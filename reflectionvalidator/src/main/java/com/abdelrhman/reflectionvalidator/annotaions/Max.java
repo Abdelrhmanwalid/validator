@@ -6,8 +6,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
 /**
- * /**
  * check if an {@link android.widget.EditText} has text with length > max
  * example
  * <pre>
