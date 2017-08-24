@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.abdelrhman.reflectionvalidator.Validator;
 import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
@@ -35,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Validator.validate(MainActivity.this);
+                if (Validator.validate(MainActivity.this)) {
+                    // do something
+                    Toast.makeText(MainActivity.this, "Yay! It's valid", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
