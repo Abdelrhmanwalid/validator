@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.EditText;
 
+import com.abdelrhman.reflectionvalidator.annotaions.Max;
 import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
 
 import java.lang.annotation.Annotation;
@@ -23,13 +24,11 @@ public class Validator {
                     if (annotation instanceof NotEmpty) {
                         field.setAccessible(true);
                         NotEmpty notEmpty = ((NotEmpty) annotation);
-                        try {
-                            EditText editText = (EditText) field.get(activity);
-                            valid = validateNotEmpty(editText, notEmpty);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
-                        break;
+                        EditText editText = getEditTextFromField(field, activity);
+                        valid = validateNotEmpty(editText, notEmpty);
+                    } else if (annotation instanceof Max) {
+                        EditText editText = getEditTextFromField(field, activity);
+                        valid = valid && validateMax(editText, ((Max) annotation));
                     }
                 }
             }
@@ -48,4 +47,20 @@ public class Validator {
             return true;
         }
     }
+
+    private static boolean validateMax(EditText editText, Max max) {
+        boolean valid = editText.getText().length() > max.length();
+        editText.setError(valid ? null : max.errorMessage());
+        return valid;
+    }
+
+    private static EditText getEditTextFromField(Field field, Activity activity) {
+        try {
+            return (EditText) field.get(activity);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
