@@ -23,7 +23,6 @@ public class Validator {
             if (field.isAnnotationPresent(NotEmpty.class) && EditText.class.equals(field.getType())) {
                 for (Annotation annotation : field.getDeclaredAnnotations()) {
                     if (annotation instanceof NotEmpty) {
-                        field.setAccessible(true);
                         NotEmpty notEmpty = ((NotEmpty) annotation);
                         EditText editText = getEditTextFromField(field, activity);
                         valid = validateNotEmpty(editText, notEmpty);
@@ -65,6 +64,7 @@ public class Validator {
     }
 
     private static EditText getEditTextFromField(Field field, Activity activity) {
+        field.setAccessible(true);
         try {
             return (EditText) field.get(activity);
         } catch (IllegalAccessException e) {
