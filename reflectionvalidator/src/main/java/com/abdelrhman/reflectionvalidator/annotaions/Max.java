@@ -20,7 +20,7 @@ public @interface Max {
     /**
      * @return max text length
      */
-    int length();
+    int value();
 
     /**
      * @return error message to be displayed, defaults to "text is too long"

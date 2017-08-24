@@ -53,13 +53,13 @@ public class Validator {
     }
 
     private static boolean validateMax(EditText editText, Max max) {
-        boolean valid = editText.getText().length() > max.length();
+        boolean valid = editText.getText().length() > max.value();
         editText.setError(valid ? null : max.errorMessage());
         return valid;
     }
 
     private static boolean validateMin(EditText editText, Min min) {
-        boolean valid = editText.getText().length() < min.length();
+        boolean valid = editText.getText().length() < min.value();
         editText.setError(valid ? null : min.errorMessage());
         return valid;
     }

@@ -12,7 +12,7 @@ public @interface Min {
     /**
      * @return min text length
      */
-    int length();
+    int value();
 
     /**
      * @return error message to be displayed, defaults to "text is too long"
