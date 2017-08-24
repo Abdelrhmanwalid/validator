@@ -1,5 +1,10 @@
 package com.abdelrhman.reflectionvalidator.annotaions;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * check if an {@link android.widget.EditText} has text with length < min
  * example
@@ -7,6 +12,8 @@ package com.abdelrhman.reflectionvalidator.annotaions;
  * {@code @Min EditText editText;}
  * </pre>
  */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Min {
 
     /**
