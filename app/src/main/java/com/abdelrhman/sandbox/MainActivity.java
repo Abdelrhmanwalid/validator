@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.abdelrhman.reflectionvalidator.Validator;
+import com.abdelrhman.reflectionvalidator.annotaions.Max;
+import com.abdelrhman.reflectionvalidator.annotaions.Min;
 import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
     @NotEmpty(errorMessage = "Enter Text")
     private EditText edittext0;
     @NotEmpty(errorMessage = "can't accept empty string")
+    @Min(2)
     private EditText edittext1;
     @NotEmpty
+    @Min(value = 3, errorMessage = "text must be at least 3 chars long")
+    @Max(10)
     private EditText edittext2;
     private Button validate;
 
