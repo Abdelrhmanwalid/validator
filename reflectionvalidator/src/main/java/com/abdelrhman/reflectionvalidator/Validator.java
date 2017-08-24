@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.abdelrhman.reflectionvalidator.annotaions.Max;
+import com.abdelrhman.reflectionvalidator.annotaions.Min;
 import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
 
 import java.lang.annotation.Annotation;
@@ -29,6 +30,9 @@ public class Validator {
                     } else if (annotation instanceof Max) {
                         EditText editText = getEditTextFromField(field, activity);
                         valid = valid && validateMax(editText, ((Max) annotation));
+                    } else if (annotation instanceof Min) {
+                        EditText editText = getEditTextFromField(field, activity);
+                        valid = valid && validateMin(editText, ((Min) annotation));
                     }
                 }
             }
@@ -51,6 +55,12 @@ public class Validator {
     private static boolean validateMax(EditText editText, Max max) {
         boolean valid = editText.getText().length() > max.length();
         editText.setError(valid ? null : max.errorMessage());
+        return valid;
+    }
+
+    private static boolean validateMin(EditText editText, Min min) {
+        boolean valid = editText.getText().length() < min.length();
+        editText.setError(valid ? null : min.errorMessage());
         return valid;
     }
 
