@@ -15,7 +15,7 @@ public @interface Min {
     int value();
 
     /**
-     * @return error message to be displayed, defaults to "text is too long"
+     * @return error message to be displayed, defaults to "text is too short"
      */
     String errorMessage() default "text is too short";
 }
