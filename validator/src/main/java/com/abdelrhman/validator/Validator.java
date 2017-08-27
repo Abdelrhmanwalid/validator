@@ -1,12 +1,12 @@
-package com.abdelrhman.reflectionvalidator;
+package com.abdelrhman.validator;
 
 import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.EditText;
 
-import com.abdelrhman.reflectionvalidator.annotaions.Max;
-import com.abdelrhman.reflectionvalidator.annotaions.Min;
-import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
+import com.abdelrhman.validator.annotaions.Max;
+import com.abdelrhman.validator.annotaions.Min;
+import com.abdelrhman.validator.annotaions.NotEmpty;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

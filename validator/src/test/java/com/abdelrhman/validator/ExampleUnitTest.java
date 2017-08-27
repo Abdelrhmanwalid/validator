@@ -1,4 +1,4 @@
-package com.abdelrhman.reflectionvalidator;
+package com.abdelrhman.validator;
 
 import org.junit.Test;
 

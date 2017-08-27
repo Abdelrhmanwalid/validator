@@ -1,4 +1,4 @@
-package com.abdelrhman.reflectionvalidator.annotaions;
+package com.abdelrhman.validator.annotaions;
 
 
 import java.lang.annotation.ElementType;

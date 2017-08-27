@@ -1,4 +1,4 @@
-package com.abdelrhman.reflectionvalidator;
+package com.abdelrhman.validator;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

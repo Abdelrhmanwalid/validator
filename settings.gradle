@@ -1,1 +1,1 @@
-include ':app', ':reflectionvalidator'
+include ':app', ':validator'

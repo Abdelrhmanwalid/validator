@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.abdelrhman.reflectionvalidator.Validator;
-import com.abdelrhman.reflectionvalidator.annotaions.Max;
-import com.abdelrhman.reflectionvalidator.annotaions.Min;
-import com.abdelrhman.reflectionvalidator.annotaions.NotEmpty;
+import com.abdelrhman.validator.Validator;
+import com.abdelrhman.validator.annotaions.Max;
+import com.abdelrhman.validator.annotaions.Min;
+import com.abdelrhman.validator.annotaions.NotEmpty;
 
 public class MainActivity extends AppCompatActivity {
 
