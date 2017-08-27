@@ -18,10 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     @NotEmpty(errorMessage = "Enter Text")
     private EditText edittext0;
-    @NotEmpty(errorMessage = "can't accept empty string")
     @Min(2)
     private EditText edittext1;
-    @NotEmpty
     @Min(value = 3, errorMessage = "text must be at least 3 chars long")
     @Max(10)
     private EditText edittext2;
