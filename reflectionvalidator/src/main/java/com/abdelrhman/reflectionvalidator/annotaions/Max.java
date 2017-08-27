@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * check if an {@link android.widget.EditText} has text with length > max
  * example
  * <pre>
- * {@code @Max EditText editText;}
+ * {@code @Max(11) EditText editText;}
  * </pre>
  */
 @Target(ElementType.FIELD)

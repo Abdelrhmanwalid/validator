@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * check if an {@link android.widget.EditText} has text with length < min
  * example
  * <pre>
- * {@code @Min EditText editText;}
+ * {@code @Min(3) EditText editText;}
  * </pre>
  */
 @Target(ElementType.FIELD)
