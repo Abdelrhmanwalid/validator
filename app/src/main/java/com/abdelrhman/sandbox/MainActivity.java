@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText edittext2;
     private Button validate;
 
+    private Validator validator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
         validate = (Button) findViewById(R.id.validate);
 
+        validator = new Validator(this);
+
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Validator.validate(MainActivity.this)) {
+                if (validator.validate()) {
                     // do something
                     Toast.makeText(MainActivity.this, "Yay! It's valid", Toast.LENGTH_SHORT).show();
                 }

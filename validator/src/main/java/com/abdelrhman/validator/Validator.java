@@ -10,45 +10,42 @@ import com.abdelrhman.validator.annotaions.NotEmpty;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by abdelrhman on 8/24/2017.
  */
 
 public class Validator {
-    public static boolean validate(Activity activity) {
-        boolean valid = true;
+
+    private Map<EditText, List<Annotation>> annotationMap = new HashMap<>();
+
+    public Validator(Activity activity) {
         Field[] fields = activity.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (EditText.class.equals(field.getType())) {
+                List<Annotation> annotations = null;
                 for (Annotation annotation : field.getDeclaredAnnotations()) {
-                    System.out.println(annotation.toString());
-                    if (annotation instanceof NotEmpty) {
-                        EditText editText = getEditTextFromField(field, activity);
-                        boolean isNotEmptyValid = validateNotEmpty(editText, ((NotEmpty) annotation));
-                        valid = valid && isNotEmptyValid;
-                        if (!isNotEmptyValid)
-                            break;
-                    } else if (annotation instanceof Max) {
-                        EditText editText = getEditTextFromField(field, activity);
-                        boolean isMaxValid = validateMax(editText, ((Max) annotation));
-                        valid = valid && isMaxValid;
-                        if (!isMaxValid)
-                            break;
-                    } else if (annotation instanceof Min) {
-                        EditText editText = getEditTextFromField(field, activity);
-                        boolean isMinValid = validateMin(editText, ((Min) annotation));
-                        valid = valid && isMinValid;
-                        if (!isMinValid)
-                            break;
+                    boolean add = false;
+                    if (annotation instanceof NotEmpty || annotation instanceof Max || annotation instanceof Min) {
+                        add = true;
+                        if (annotations == null) {
+                            annotations = new ArrayList<>();
+                        }
+                        annotations.add(annotation);
                     }
+                    if (add)
+                        annotationMap.put(getEditTextFromField(field, activity), annotations);
                 }
             }
         }
-        return valid;
     }
 
-    private static boolean validateNotEmpty(EditText editText, NotEmpty notEmpty) {
+    private boolean validateNotEmpty(EditText editText, NotEmpty notEmpty) {
         if (TextUtils.isEmpty(editText.getText())) {
             editText.setError(notEmpty.errorMessage());
             return false;
@@ -58,19 +55,46 @@ public class Validator {
         }
     }
 
-    private static boolean validateMax(EditText editText, Max max) {
+    private boolean validateMax(EditText editText, Max max) {
         boolean valid = editText.getText().length() <= max.value();
         editText.setError(valid ? null : max.errorMessage());
         return valid;
     }
 
-    private static boolean validateMin(EditText editText, Min min) {
+    private boolean validateMin(EditText editText, Min min) {
         boolean valid = editText.getText().length() >= min.value();
         editText.setError(valid ? null : min.errorMessage());
         return valid;
     }
 
-    private static EditText getEditTextFromField(Field field, Activity activity) {
+    public boolean validate() {
+        boolean valid = true;
+        Set<EditText> editTexts = annotationMap.keySet();
+        for (EditText editText : editTexts) {
+            List<Annotation> annotations = annotationMap.get(editText);
+            for (Annotation annotation : annotations) {
+                if (annotation instanceof NotEmpty) {
+                    boolean isNotEmptyValid = validateNotEmpty(editText, ((NotEmpty) annotation));
+                    valid = valid && isNotEmptyValid;
+                    if (!isNotEmptyValid)
+                        break;
+                } else if (annotation instanceof Max) {
+                    boolean isMaxValid = validateMax(editText, ((Max) annotation));
+                    valid = valid && isMaxValid;
+                    if (!isMaxValid)
+                        break;
+                } else if (annotation instanceof Min) {
+                    boolean isMinValid = validateMin(editText, ((Min) annotation));
+                    valid = valid && isMinValid;
+                    if (!isMinValid)
+                        break;
+                }
+            }
+        }
+        return valid;
+    }
+
+    private EditText getEditTextFromField(Field field, Activity activity) {
         field.setAccessible(true);
         try {
             return (EditText) field.get(activity);
