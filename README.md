@@ -13,6 +13,6 @@ runtime validation using refelction
 
 ### Code-gen ###
 
-annotation processing & code generation at runtime
+annotation processing & code generation at compile time
 
 ```git checkout code-gen```
