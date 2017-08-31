@@ -4,10 +4,10 @@ Basic EditText validator using annotations created for learning purposes.
 
 ```git clone https://bitbucket.org/abdelrhmanwalid/basic-validator```
 
-there are 2 branches :
+there are 2 branches:
 
 ### Master ###
-runtime validation using refelction
+runtime validation using reflection
 
 ```git checkout master```
 
