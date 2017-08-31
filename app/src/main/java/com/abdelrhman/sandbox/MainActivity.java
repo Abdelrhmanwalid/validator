@@ -7,25 +7,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.abdelrhman.validator.Validator;
 import com.abdelrhman.validator.annotaions.Max;
 import com.abdelrhman.validator.annotaions.Min;
 import com.abdelrhman.validator.annotaions.NotEmpty;
+
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @NotEmpty(errorMessage = "Enter Text")
-    private EditText edittext0;
+    EditText edittext0;
     @Min(2)
-    private EditText edittext1;
+    EditText edittext1;
     @Min(value = 3, errorMessage = "text must be at least 3 chars long")
     @Max(10)
-    private EditText edittext2;
+    EditText edittext2;
     private Button validate;
-
-    private Validator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         validate = (Button) findViewById(R.id.validate);
 
-        validator = new Validator(this);
-
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validator.validate()) {
+                if (MainActivity_Validator.validate(MainActivity.this)) {
                     // do something
                     Toast.makeText(MainActivity.this, "Yay! It's valid", Toast.LENGTH_SHORT).show();
                 }

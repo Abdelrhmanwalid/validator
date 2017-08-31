@@ -25,5 +25,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile project(':validator')
+    compile project(':validator-anotaions')
+    annotationProcessor project(':validation-processor')
 }
