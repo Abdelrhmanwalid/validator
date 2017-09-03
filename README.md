@@ -2,17 +2,15 @@
 
 Basic EditText validator using annotations created for learning purposes.
 
-```git clone https://github.com/Abdelrhmanwalid/validator```
-
 there are 2 branches:
 
 ### Master ###
 runtime validation using reflection
 
-```git checkout master```
+```git clone -b master https://github.com/Abdelrhmanwalid/validator```
 
 ### Code-gen ###
 
 annotation processing & code generation at compile time
 
-```git checkout code-gen```
+```git clone -b code-gen https://github.com/Abdelrhmanwalid/validator```
