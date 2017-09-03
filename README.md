@@ -2,7 +2,7 @@
 
 Basic EditText validator using annotations created for learning purposes.
 
-```git clone https://bitbucket.org/abdelrhmanwalid/basic-validator```
+```git clone https://github.com/Abdelrhmanwalid/validator```
 
 there are 2 branches:
 
